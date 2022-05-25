@@ -297,6 +297,7 @@ runs:
         cd ${{ inputs.path }}
         source setup.sh
         spack env activate ${{ inputs.path }}/envs/${{ inputs.app }}
+        spack module lmod refresh -y
         spack stack setup-meta-modules
       fi
 
