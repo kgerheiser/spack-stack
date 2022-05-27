@@ -1,0 +1,25 @@
+spack:
+  concretization: separately
+  view: false
+
+  include: []
+
+  specs:
+  - emc-gfs-wafs-env
+  - emc-verif-global-env
+  - gldas-env
+  - global-workflow-env
+  - gsi-env
+  - jedi-ewok-env
+  - jedi-fv3-env
+# Does not build with Intel
+# - jedi-tools-env
+  - jedi-ufs-env
+  - jedi-um-env
+  - nceplibs-env
+  - soca-env
+  - ufs-srw-app-env
+  - ufs-utils-env
+  - ufs-weather-model-debug-env
+  - upp-env
+  - ww3-env

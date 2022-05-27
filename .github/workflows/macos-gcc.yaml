@@ -8,13 +8,8 @@ defaults:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        # Can't build jedi-ewok on macOS (12) with gcc (11)
-        spec: [jedi-fv3-env, jedi-tools-env, jedi-ufs-env, jedi-um-env, nceplibs-env, soca-env]
     runs-on: macos-latest
     steps:
-
       - name: checkout
         uses: actions/checkout@v2
         with:
@@ -23,7 +18,7 @@ jobs:
       - name: install-env
         uses: ./.github/actions/setup-spack-stack
         with:
-          specs: ${{ matrix.spec }}
+          template: jedi-ufs-all-macos-gcc
           compiler: gcc@9
           mpi: mpich
           path: ${{ github.workspace }}

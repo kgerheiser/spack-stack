@@ -8,12 +8,8 @@ defaults:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        spec: [jedi-ewok-env, jedi-fv3-env, jedi-tools-env, jedi-ufs-env, jedi-um-env, nceplibs-env, soca-env]
     runs-on: macos-latest
     steps:
-
       - name: checkout
         uses: actions/checkout@v2
         with:
@@ -22,7 +18,7 @@ jobs:
       - name: install-env
         uses: ./.github/actions/setup-spack-stack
         with:
-          specs: ${{ matrix.spec }}
+          template: jedi-ufs-all-macos-clang
           compiler: clang
           mpi: openmpi
           path: ${{ github.workspace }}
