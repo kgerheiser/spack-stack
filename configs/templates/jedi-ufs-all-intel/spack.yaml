@@ -12,8 +12,6 @@ spack:
   - gsi-env
   - jedi-ewok-env
   - jedi-fv3-env
-# Does not build with Intel
-# - jedi-tools-env
   - jedi-ufs-env
   - jedi-um-env
   - nceplibs-env
