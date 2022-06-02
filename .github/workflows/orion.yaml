@@ -1,0 +1,22 @@
+name: orion-build
+on: workflow_dispatch
+
+# Use custom shell with -l so .bash_profile is sourced
+defaults:
+  run:
+    shell: bash -leo pipefail {0}
+
+jobs:
+  build:
+    runs-on: [self-hosted, orion]
+    steps:
+
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: install-env
+        run: |
+            pwd
+            module avail
