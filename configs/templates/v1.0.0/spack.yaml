@@ -1,0 +1,42 @@
+spack:
+  concretizer:
+    unify: when_possible
+
+  view: false
+
+  include: []
+
+  packages:
+    zlib:
+      version: [1.2.11]
+    hdf5:
+      version: [1.12.1]
+    netcdf-c:
+      version: [4.8.1]
+    netcdf-fortran:
+      version: [4.5.4]
+    parallel-netcdf:
+      version: [1.12.2]
+    parallelio:
+      version: [2.5.4]
+    nccmp:
+      version: [1.9.0.1]
+    esmf:
+      version: [8.2.0]
+    eckit:
+      version: [1.19.0]
+    fckit:
+      version: [0.9.5]
+    hdf:
+      version: [4.2.15]
+    jedi-cmake:
+      version: [1.3.0]
+    netcdf-cxx4:
+      version: [4.3.1]
+    ecflow:
+      version: [5.8.3]
+    nco:
+      version: [5.0.6]
+
+  specs: []
+    
