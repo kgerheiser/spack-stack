@@ -1,0 +1,39 @@
+name: create-spack-mirror
+
+on:
+  workflow_dispatch:
+    inputs:
+      template:
+        description: 'Base spack.yaml template. Default is an empty environment.'
+        required: false
+        default: 'empty'
+      specs:
+        description: 'Which application env to build'
+        required: false
+        default: 'jedi-ufs-env'
+
+jobs:
+  create-spack-mirror:
+    runs-on: [self-hosted, orion]
+
+    env:
+      name: runner-test
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: create-env
+        run: |
+          module purge
+          module use module use /work/noaa/da/jedipara/spack-stack/modulefiles
+          module load miniconda/3.9.7
+
+          source setup.sh
+          spack stack create env --site orion --template ${{ github.event.inputs.template }} --specs ${{ github.event.inputs.specs }} --name ${{ env.name }}
+          cd envs/${{ env.name }}
+          spacktivate -d .
+          spack concretize
+          spack install
