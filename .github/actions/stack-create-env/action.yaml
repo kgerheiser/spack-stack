@@ -46,8 +46,16 @@ runs:
   - name: stack-setup-gh-runner
     uses: ./.github/actions/stack-setup-gh-runner
 
+  - name: cache-oneapi
+    id: cache-oneapi
+    uses: actions/cache@v2
+    with:
+      path: |
+        /opt/intel
+      key: intel-oneapi-latest
+    
   - name: install-intel-oneapi
-    if:  ${{ inputs.compiler == 'intel' }}
+    if:  ${{ inputs.compiler == 'intel' }} && steps.cache-oneapi.outputs.cache-hit != 'true'
     uses: ./.github/actions/install-intel-oneapi
 
   - name: cache-mpi
