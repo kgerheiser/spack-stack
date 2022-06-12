@@ -114,7 +114,7 @@ runs:
         echo "        prefix: /opt/intel/oneapi" >> ${SPACK_ENV}/spack.yaml
       else
         # So Spack can find external MPI
-        export "PATH=$HOME/mpi/bin:${PATH}"
+        export "PATH=${{ github.workspace }}/mpi/bin:${PATH}"
       fi
 
       # Make homebrew qt@5 detectable on macOS
