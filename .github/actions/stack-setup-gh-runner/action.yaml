@@ -1,0 +1,40 @@
+name: 'stack-setup-gh-runner'
+description: 'Install base spack-stack packages using OS package managers.'
+
+runs:
+  using: "composite"
+
+  steps:
+  - name: setup
+    shell: bash
+    run: |
+      if [[ "$RUNNER_OS" == "Linux" ]]; then
+        # Needed for the following apt-get install calls to work
+        sudo apt-get update
+
+        # Install Curl headers. Executable exists by default in spack external find.
+        sudo apt-get install libcurl4-openssl-dev
+
+        # Install git-lfs to avoid compilation errors of "go" with Intel
+        sudo apt-get install git-lfs
+
+        # Install krb5 to avoid compilation errors of "hdf" on Ubuntu
+        sudo apt-get install krb5-user libkrb5-dev
+
+        # For now, install qt5 using apt on Linux. Later, should consider
+        # using https://github.com/jurplel/install-qt-action for all runners
+        # and also get rid of the macOS homebrew installation/package config
+        sudo apt-get install qt5-default qttools5-dev-tools libqt5svg5-dev
+      elif [[ "$RUNNER_OS" == "macOS" ]]; then
+        # These are already installed
+        #brew install curl
+        #brew install git
+        #brew install git-lfs
+        brew install lmod
+        brew install qt@5
+        brew install readline
+        brew install wget
+      fi
+
+      # Install Python poetry to avoid install errors in spack
+      python3 -m pip install poetry

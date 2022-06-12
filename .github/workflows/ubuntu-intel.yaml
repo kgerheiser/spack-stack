@@ -21,7 +21,7 @@ jobs:
           submodules: true
 
       - name: install-env
-        uses: ./.github/actions/setup-spack-stack
+        uses: ./.github/actions/stack-create-env
         with:
           specs: ${{ matrix.spec }}
           compiler: intel

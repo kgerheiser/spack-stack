@@ -1,0 +1,26 @@
+name: 'instal-intel-oneapi'
+description: 'Installs Intel OneAPI on Ubuntu using APT'
+outputs:
+  setup-script:
+    description: 'Source this file to initialize Intel OneAPI.'
+    value: ${{ steps.install-oneapi.outputs.source-file }}
+runs:
+  using: "composite"
+  steps:
+
+  - name: install-oneapi
+    id: install-oneapi
+    shell: bash
+    run: |
+      if [[ "$RUNNER_OS" == "Linux" ]]; then
+        cd /tmp
+        wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+        sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+        rm GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+        echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
+        sudo apt-get update
+        sudo apt-get install intel-oneapi-dev-utilities intel-oneapi-openmp intel-oneapi-compiler-fortran intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic intel-oneapi-mpi-devel
+        echo "::set-output name=setup-script::$(echo /opt/intel/oneapi/setvars.sh)
+      else
+        exit 1 "Can only install OneAPI on Linux"
+      fi
