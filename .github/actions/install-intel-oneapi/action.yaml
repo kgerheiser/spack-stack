@@ -20,7 +20,7 @@ runs:
         echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
         sudo apt-get update
         sudo apt-get install intel-oneapi-dev-utilities intel-oneapi-openmp intel-oneapi-compiler-fortran intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic intel-oneapi-mpi-devel
-        echo "::set-output name=setup-script::$(echo /opt/intel/oneapi/setvars.sh)
+        echo "::set-output name=setup-script::$(echo /opt/intel/oneapi/setvars.sh)"
       else
         exit 1 "Can only install OneAPI on Linux"
       fi
