@@ -168,11 +168,11 @@ runs:
 
       # Remove specs that don't build under certain configurations.
       if [[ "${{ inputs.compiler }}" == "intel"* ]]; then
-        spack rm jedi-tools-env || true
+        spack rm jedi-tools-env 2>/dev/null
       fi
 
       if [[ "$RUNNER_OS" == "macOS" && "${{ inputs.compiler }}" == "gcc"* ]]; then
-        spack rm jedi-ewok-env || true
+        spack rm jedi-ewok-env 2>/dev/null
       fi
 
       mkdir ${GITHUB_WORKSPACE}/logs
