@@ -43,8 +43,16 @@ runs:
 
   steps:
 
+  - name: checkout-spack-stack
+    if: ${{ inputs.use-local-checkout == 'false' }}
+    uses: actions/checkout@v2
+    with:
+      repository: ${{ github.action_repository }}
+      path: spack-stack
+      submodules: true
+
   - name: stack-setup-gh-runner
-    uses: ./spack-stack/.github/actions/stack-setup-gh-runner@feature/gh-action-refactor
+    uses: ./.github/actions/stack-setup-gh-runner@feature/gh-action-refactor
 
   - name: cache-oneapi
     id: cache-oneapi
@@ -56,7 +64,7 @@ runs:
     
   - name: install-intel-oneapi
     if:  ${{ inputs.compiler == 'intel' }} && steps.cache-oneapi.outputs.cache-hit != 'true'
-    uses: ./spack-stack/.github/actions/install-intel-oneapi@feature/gh-action-refactor
+    uses: ./.github/actions/install-intel-oneapi@feature/gh-action-refactor
 
   - name: cache-mpi
     id: cache-mpi
@@ -67,19 +75,11 @@ runs:
 
   - name: install-mpi
     if: steps.cache-mpi.outputs.cache-hit != 'true'
-    uses: ./spack-stack/.github/actions/install-mpi@feature/gh-action-refactor
+    uses: ./.github/actions/install-mpi@feature/gh-action-refactor
     with:
       mpi: ${{ inputs.mpi }}
       compiler: ${{ inputs.compiler }}
       prefix: ${{ github.workspace }}/mpi
-  
-  - name: checkout-spack-stack
-    if: ${{ inputs.use-local-checkout == 'false' }}
-    uses: actions/checkout@v2
-    with:
-      repository: ${{ github.action_repository }}
-      path: spack-stack
-      submodules: true
 
   - name: setup-stack-env
     shell: bash
