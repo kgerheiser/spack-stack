@@ -44,7 +44,7 @@ runs:
   steps:
 
   - name: stack-setup-gh-runner
-    uses: ${{ github.action_path }}/.github/actions/stack-setup-gh-runner
+    uses: ./.github/actions/stack-setup-gh-runner
 
   - name: cache-oneapi
     id: cache-oneapi
@@ -56,7 +56,7 @@ runs:
     
   - name: install-intel-oneapi
     if:  ${{ inputs.compiler == 'intel' }} && steps.cache-oneapi.outputs.cache-hit != 'true'
-    uses: ${{ github.action_path }}/.github/actions/install-intel-oneapi
+    uses: ./.github/actions/install-intel-oneapi
 
   - name: cache-mpi
     id: cache-mpi
@@ -67,7 +67,7 @@ runs:
 
   - name: install-mpi
     if: steps.cache-mpi.outputs.cache-hit != 'true'
-    uses: ${{ github.action_path }}/.github/actions/install-mpi
+    uses: ./.github/actions/install-mpi
     with:
       mpi: ${{ inputs.mpi }}
       compiler: ${{ inputs.compiler }}
