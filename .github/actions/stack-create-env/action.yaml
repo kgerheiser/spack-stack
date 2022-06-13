@@ -52,7 +52,7 @@ runs:
       submodules: true
 
   - name: stack-setup-gh-runner
-    uses: ./.github/actions/stack-setup-gh-runner@feature/gh-action-refactor
+    uses: ./.github/actions/stack-setup-gh-runner
 
   - name: cache-oneapi
     id: cache-oneapi
@@ -64,7 +64,7 @@ runs:
     
   - name: install-intel-oneapi
     if:  ${{ inputs.compiler == 'intel' }} && steps.cache-oneapi.outputs.cache-hit != 'true'
-    uses: ./.github/actions/install-intel-oneapi@feature/gh-action-refactor
+    uses: ./.github/actions/install-intel-oneapi
 
   - name: cache-mpi
     id: cache-mpi
@@ -75,7 +75,7 @@ runs:
 
   - name: install-mpi
     if: steps.cache-mpi.outputs.cache-hit != 'true'
-    uses: ./.github/actions/install-mpi@feature/gh-action-refactor
+    uses: ./.github/actions/install-mpi
     with:
       mpi: ${{ inputs.mpi }}
       compiler: ${{ inputs.compiler }}
