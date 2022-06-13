@@ -52,7 +52,7 @@ runs:
       submodules: true
 
   - name: stack-setup-gh-runner
-    uses: ./spack-stack/.github/actions/stack-setup-gh-runner
+    uses: $GITHUB_ACTION_PATH/.github/actions/stack-setup-gh-runner
 
   - name: cache-oneapi
     id: cache-oneapi
@@ -64,7 +64,7 @@ runs:
     
   - name: install-intel-oneapi
     if:  ${{ inputs.compiler == 'intel' }} && steps.cache-oneapi.outputs.cache-hit != 'true'
-    uses: ./spack-stack/.github/actions/install-intel-oneapi
+    uses: $GITHUB_ACTION_PATH/.github/actions/install-intel-oneapi
 
   - name: cache-mpi
     id: cache-mpi
