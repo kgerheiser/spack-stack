@@ -1,0 +1,39 @@
+spack:
+  concretizer:
+    unify: when_possible
+  
+  config:
+    install_tree:
+       root: $env/install
+  modules:
+    default:
+      roots:
+        lmod: $env/install/modulefiles
+        tcl: $env/install/modulefiles
+
+  include: []
+
+  definitions:
+    compilers: ['%gcc', '%intel']
+    packages:
+      - jedi-ewok-env 
+      - jedi-fv3-env
+      - jedi-tools-env
+      - jedi-ufs-env
+      - jedi-um-env
+      - global-workflow-env
+      - ufs-weather-model-env
+      - ufs-weather-model-env+debug
+      - upp-env
+      - ww3-env
+      - gsi-env
+      - ufs-utils-env
+      - nceplibs-env
+      - soca-env
+
+  specs:
+    - matrix:
+      - [$packages]
+      - [$compilers]
+      exclude:
+        - jedi-tools-env%intel
