@@ -25,20 +25,80 @@ spack:
   # Basic package config from configs/common/packages.yaml
   # Additional package config for container
   packages:
-    gcc:
-      buildable: False
+    bash:
       externals:
-      - spec: gcc@10
+      - spec: bash@5.0.17
+        prefix: /usr
+    binutils:
+      externals:
+      - spec: binutils@2.34
+        prefix: /usr
+    bzip2:
+      externals:
+      - spec: bzip2@1.0.8
+        prefix: /usr
+    curl:
+      externals:
+      - spec: curl@7.68.0+gssapi+ldap+nghttp2
+        prefix: /usr
+    diffutils:
+      externals:
+      - spec: diffutils@3.7
+        prefix: /usr
+    file:
+      externals:
+      - spec: file@5.38
+        prefix: /usr
+    findutils:
+      externals:
+      - spec: findutils@4.7.0
         prefix: /usr
     git:
-      buildable: False
       externals:
+      - spec: git@2.25.1~tcltk
+        prefix: /usr
       - spec: git@2
         prefix: /usr
+      buildable: false
     git-lfs:
+      externals:
+      - spec: git-lfs@2.9.2
+        prefix: /usr
+      - spec: git-lfs@2
+        prefix: /usr
+      buildable: false
+    gmake:
+      externals:
+      - spec: gmake@4.2.1
+        prefix: /usr
+    ncurses:
+      externals:
+      - spec: ncurses@6.2
+        prefix: /usr
+    openssl:
       buildable: False
       externals:
-      - spec: git-lfs@2
+      - spec: openssl@1.1.1f.head
+        prefix: /usr
+    perl:
+      externals:
+      - spec: perl@5.30.0~cpanm+shared+threads
+        prefix: /usr
+    python:
+      externals:
+      - spec: python@3.8.10+bz2+ctypes+dbm+ensurepip+lzma+nis+pyexpat~pythoncmd+readline+sqlite3+ssl~tix~tkinter+uuid+zlib
+        prefix: /usr
+    sed:
+      externals:
+      - spec: sed@4.7
+        prefix: /usr
+    tar:
+      externals:
+      - spec: tar@1.30
+        prefix: /usr
+    xz:
+      externals:
+      - spec: xz@5.2.4
         prefix: /usr
 
   specs: []
@@ -73,6 +133,8 @@ spack:
     ## Additional system packages that are needed at runtime
     os_packages:
       build:
+      - libcurl4-openssl-dev
+      - libncurses-dev
       - gcc-10
       - g++-10
       - gfortran-10
