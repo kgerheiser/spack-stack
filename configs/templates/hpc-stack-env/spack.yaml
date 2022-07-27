@@ -1,0 +1,160 @@
+spack:
+   view: false
+
+   include: []
+
+   concretizer:
+     unify: when_possible
+
+   config:
+      install_tree:
+        root: $env/install
+
+  modules:
+    default:
+      roots:
+        lmod: $env/install/modulefiles
+        tcl: $env/install/modulefiles
+      lmod:
+        projections:
+          parallelio: 'pio/{version}'
+      tcl:
+        projections:
+          parallelio: '{^mpi.name}/{^mpi.version}/{compiler.name}/{compiler.version}/pio/{version}'
+
+   packages:
+      bacio:
+        version: [2.4.1]
+      bufr:
+        version: [11.7.0]
+      g2:
+        version: [3.4.5]
+      g2c:
+        version: [1.6.4]
+      g2tmpl:
+        version: [1.10.0]
+      gftl-shared:
+        version: [1.5.0]
+      grib-util:
+        version: [1.2.4]
+      crtm:
+        version: [2.3.0]
+        variants: +fix
+      gfsio:
+        version: [1.4.1]
+      ip:
+        version: [3.3.3]
+      ip2:
+        version: [1.1.2]
+      jasper:
+        version: [2.0.25]
+      cdo:
+        version: [1.9.8]
+      esmf:
+        version: [8.3.0b09]
+      fms:
+        version: [2022.01]
+      hdf5:
+        version: [1.10.6]
+      jpeg:
+        version: [9.1.0]
+      libpng:
+        version: [1.6.37]
+      mapl:
+        version: [2.22.0]
+      met:
+        version: [10.1.1]
+      metplus:
+        version: [4.1.1]
+      metis:
+        version: [5.1.0]
+      nccmp:
+        version: [1.9.0.1]
+      ncio:
+        version: [1.1.2]
+      nco:
+        version: [5.0.6]
+        variants: ~doc
+      netcdf-c:
+        version: [4.7.4]
+      nemsio:
+        version: [2.5.4]
+      nemsiogfs:
+        version: [2.5.3]
+      # External PIO for ESMF 8.3.0+ requires 2.5.7+
+      parallelio:
+        version: [2.5.7]
+      parmetis:
+        version: [4.0.3]
+      prod-util:
+        version: [1.2.2]
+      py-cartopy:
+        variants: +plotting
+      py-h5py:
+        version: [3.6.0]
+      py-netcdf4:
+        version: [1.5.3]
+        variants: +mpi
+      py-numpy:
+        version: [1.22.3]
+        variants: +blas +lapack
+      py-openpyxl:
+        version: [3.0.3]
+      py-pandas:
+        version: [1.4.0]
+      py-pygithub:
+        version: [1.55]
+      py-pygrib:
+        version: [2.1.4]
+      py-pyhdf:
+        version: [0.10.4]
+      py-pyproj:
+        version: [3.1.0]
+      py-python-dateutil:
+        version: [2.8.2]
+      py-pyyaml:
+        version: [6.0]
+      py-scipy:
+        version: [1.8.0]
+      py-shapely:
+        version: [1.8.0]
+      sigio:
+        version: [2.3.2]
+      sfcio:
+        version: [1.4.1]
+      sp:
+        version: [2.3.3]
+      upp:
+        version: [10.0.10]
+      w3emc:
+        version: [2.9.2]
+      w3nco:
+        version: [2.4.1]
+      wgrib2:
+        version: [3.1.1]
+      wrf-io:
+        version: [1.2.0]
+      yafyaml:
+        version: [0.5.1]
+      zlib:
+        version: [1.2.12]
+
+   definitions:
+   - compilers: ['%gcc', '%intel']
+   - packages:
+       - base-env@hpc-stack
+       - global-workflow-env@hpc-stack
+       - ufs-weather-model-env@hpc-stack
+       - ufs-weather-model-env+debug@hpc-stack
+       - ufs-pyenv@hpc-stack
+       - upp-env@hpc-stack
+       - ww3-env@hpc-stack
+       - gsi-env@hpc-stack
+       - ufs-utils-env@hpc-stack
+       - nceplibs-env@hpc-stack
+       - ufs-srw-app-env@hpc-stack
+
+   specs:
+     - matrix:
+       - [$packages]
+       - [$compilers]
