@@ -1,22 +1,21 @@
 spack:
   concretizer:
-    unify: when_possible
+    unify: true
   view: false
 
   config:
-    build_jobs: 2
-    connect_timeout: 60
+    deprecated: true
 
   compilers:
-  - compiler:
-      spec: gcc@10
+   - compiler:
+      spec: gcc@10.3.0
       paths:
-        cc: /usr/bin/gcc-10
-        cxx: /usr/bin/g++-10
-        f77: /usr/bin/gfortran-10
-        fc: /usr/bin/gfortran-10
+         cc: /usr/bin/gcc-10
+         cxx: /usr/bin/g++-10
+         f77: /usr/bin/gfortran-10
+         fc: /usr/bin/gfortran-10
       flags: {}
-      operating_system: any
+      operating_system: ubuntu20.04
       target: x86_64
       modules: []
       environment: {}
@@ -25,6 +24,14 @@ spack:
   # Basic package config from configs/common/packages.yaml
   # Additional package config for container
   packages:
+    autoconf:
+      externals:
+      - spec: autoconf@2.69
+        prefix: /usr
+    automake:
+     externals:
+      - spec: automake@1.16.1
+        prefix: /usr
     bash:
       externals:
       - spec: bash@5.0.17
@@ -45,10 +52,6 @@ spack:
       externals:
       - spec: diffutils@3.7
         prefix: /usr
-    file:
-      externals:
-      - spec: file@5.38
-        prefix: /usr
     findutils:
       externals:
       - spec: findutils@4.7.0
@@ -56,8 +59,6 @@ spack:
     git:
       externals:
       - spec: git@2.25.1~tcltk
-        prefix: /usr
-      - spec: git@2
         prefix: /usr
       buildable: false
     git-lfs:
@@ -75,10 +76,22 @@ spack:
       externals:
       - spec: ncurses@6.2
         prefix: /usr
-    openssl:
-      buildable: False
+    openssh:
       externals:
-      - spec: openssl@1.1.1f.head
+      - spec: openssh@8.2p1
+        prefix: /usr
+    pkg-config:
+      externals:
+      - spec: pkg-config@0.29.1
+        prefix: /usr
+    m4:
+      externals:
+      - spec: m4@1.4.18
+        prefix: /usr
+    openssl:
+      buildable: false
+      externals:
+      - spec: openssl@1.1.1z
         prefix: /usr
     perl:
       externals:
@@ -135,12 +148,17 @@ spack:
       build:
       - libcurl4-openssl-dev
       - libncurses-dev
+      - libssl-dev
+      - autotools-dev
+      - autoconf
+      - pkg-config
       - gcc-10
       - g++-10
       - gfortran-10
       - cpp-10
       - git
       - git-lfs
+      - libpython3-dev
       final:
       - gcc-10
       - g++-10
