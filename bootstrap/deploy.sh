@@ -11,7 +11,7 @@ template="hpc-stack-dev"
 env_name="hpc-stack-dev"
 
 env_dir="${stack_dir}/envs/${tag_abbrev}"
-install_dir="${env_dir}/${name}"
+install_dir="${env_dir}/${env_name}"
 modules_install_dir="${install_dir}/modulefiles"
 
 source ${SCRIPT_DIR}/detect_machine.sh
@@ -27,8 +27,8 @@ git clone --recursive -b ${stack_tag} ${stack_git} src
 cd src
 
 source setup.sh
-spack stack create env --site ${site} --template ${template} --name ${env_name}
-spack env activate -d envs/${env_name}
+spack stack create env --site ${site} --template ${template} --name ${env_name} --dir ${env_dir}/envs
+spack env activate -d ${env_dir}/envs/${env_name}
 
 spack config add "config:install_tree:root:${install_dir}"
 spack config add "modules:default:roots:lmod:${modules_install_dir}"
