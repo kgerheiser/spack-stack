@@ -212,20 +212,20 @@ spack:
   definitions:
   - compilers: ['%gcc', '%intel']
   - packages:
-      - jedi-ewok-env@hpc-dev-v1
-      - jedi-fv3-env@hpc-dev-v1
+      - jedi-ewok-env@hpc-stack-dev
+      - jedi-fv3-env@hpc-stack-dev
       - jedi-tools-env@hpc-dev-v1
-      - jedi-ufs-env@hpc-dev-v1
-      - jedi-um-env@hpc-dev-v1
-      - global-workflow-env@hpc-dev-v1
-      - ufs-weather-model-env@hpc-dev-v1
-      - ufs-weather-model-env+debug@hpc-dev-v1
-      - upp-env@hpc-dev-v1
-      - ww3-env@hpc-dev-v1
-      - gsi-env@hpc-dev-v1
-      - ufs-utils-env@hpc-dev-v1
-      - nceplibs-env@hpc-dev-v1
-      - soca-env@hpc-dev-v1
+      - jedi-ufs-env@hpc-stack-dev
+      - jedi-um-env@hpc-stack-dev
+      - global-workflow-env@hpc-stack-dev
+      - ufs-weather-model-env@hpc-stack-dev
+      - ufs-weather-model-env+debug@hpc-stack-dev
+      - upp-env@hpc-stack-dev
+      - ww3-env@hpc-stack-dev
+      - gsi-env@hpc-stack-dev
+      - ufs-utils-env@hpc-stack-dev
+      - nceplibs-env@hhpc-stack-dev
+      - soca-env@hpc-stack-dev
 
   specs:
     - matrix:
