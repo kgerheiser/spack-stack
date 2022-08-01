@@ -5,11 +5,12 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 # inputs
 stack_git="https://github.com/kgerheiser/spack-stack.git"
 stack_tag="feature/hpc-dev-env"
+tag_abbrev="hpc-stack-test"
 stack_dir="/Users/KIG/dev/spack-stack"
 template="hpc-stack-dev"
 env_name="hpc-stack-dev"
 
-env_dir="${stack_dir}/envs/${stack_tag}"
+env_dir="${stack_dir}/envs/${tag_abbrev}"
 install_dir="${env_dir}/${name}"
 modules_install_dir="${install_dir}/modulefiles"
 
@@ -27,7 +28,7 @@ cd src
 
 source setup.sh
 spack stack create env --site ${site} --template ${template} --name ${env_name}
-spack env activate -d envs/${name}
+spack env activate -d envs/${env_name}
 
 spack config add "config:install_tree:root:${install_dir}"
 spack config add "modules:default:roots:lmod:${modules_install_dir}"
