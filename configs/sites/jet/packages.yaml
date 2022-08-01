@@ -21,10 +21,10 @@ packages:
   python:
     buildable: False
     externals:
-    - spec: python@3.9.7+bz2+ctypes+dbm+ensurepip+lzma+nis+pyexpat+pythoncmd+readline+sqlite3+ssl+tix+tkinter+uuid+zlib
-      prefix: /lfs4/HFIP/hfv3gfs/Kyle.Gerheiser/miniconda/miniconda-3.9.7
+    - spec: python@3.9.12+bz2+ctypes+dbm+ensurepip+lzma+nis+pyexpat+pythoncmd+readline+sqlite3+ssl+tix+tkinter+uuid+zlib
+      prefix: /lfs4/HFIP/hfv3gfs/spack-stack/apps/miniconda/py39_4.12.0
       modules:
-      - miniconda/3.9.7
+      - miniconda/3.9.12
   autoconf:
     externals:
     - spec: autoconf@2.69
@@ -65,6 +65,13 @@ packages:
     externals:
     - spec: doxygen@1.8.5+graphviz~mscgen
       prefix: /usr
+  ecflow:
+    buildable: False
+    externals:
+    - spec: ecflow@5.5.3+ui+static_boost
+      prefix: /apps/ecflow/5.5.3
+      modules:
+      - ecflow/5.5.3
   file:
     externals:
     - spec: file@5.11
