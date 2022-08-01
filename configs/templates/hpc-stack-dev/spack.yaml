@@ -220,7 +220,7 @@ spack:
       - ufs-utils-env@hpc-stack-dev
       - nceplibs-env@hhpc-stack-dev
       - soca-env@hpc-stack-dev
-      - jedia-base-env
+      - jedi-base-env
 
   specs:
     - matrix:
