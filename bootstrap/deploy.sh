@@ -6,14 +6,11 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 stack_git="https://github.com/NOAA-EMC/spack-stack.git"
 stack_tag="develop"
 stack_dir="/Users/KIG/dev/spack-stack"
-# test/release/develop
-env_type="test"
-template="skylab-1.0.0"
-name="hpc-stack-dev"
-compilers=""
+template="hpc-stack-dev"
+env_name="hpc-stack-dev"
 
-env_dir="${stack_dir}/envs/${stack_tag}/${name}"
-install_dir="${env_dir}/${install}"
+env_dir="${stack_dir}/envs/${stack_tag}"
+install_dir="${env_dir}/${name}"
 modules_install_dir="${install_dir}/modulefiles"
 
 source ${SCRIPT_DIR}/detect_machine.sh
@@ -29,7 +26,7 @@ git clone --recursive -b ${stack_tag} ${stack_git} src
 cd src
 
 source setup.sh
-spack stack create env --site ${site} --template ${template} --name ${name}
+spack stack create env --site ${site} --template ${template} --name ${env_name}
 spack env activate -d envs/${name}
 
 spack config add "config:install_tree:root:${install_dir}"
