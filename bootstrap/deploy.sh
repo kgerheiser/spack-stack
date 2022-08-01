@@ -27,7 +27,7 @@ git clone --recursive -b ${stack_tag} ${stack_git} src
 cd src
 
 source setup.sh
-spack stack create env --site ${site} --template ${template} --name ${env_name} --dir ${env_dir}/envs
+spack stack create env --site ${site} --template ${template} --name ${env_name}
 spack env activate -d ${env_dir}/envs/${env_name}
 
 spack config add "config:install_tree:root:${install_dir}"
