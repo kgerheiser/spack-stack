@@ -104,7 +104,7 @@ spack:
       version: [5.0.6]
       variants: ~doc
     nemsio:
-      version: [2.5.2]
+      version: [2.5.4]
     nemsiogfs:
       version: [2.5.3]
     nccmp:
@@ -200,7 +200,7 @@ spack:
     wget:
       version: [1.21.2]
     wgrib2:
-      version: [2.0.8]
+      version: [3.1.1]
     wrf-io:
       version: [1.2.0]
     yafyaml:
@@ -212,13 +212,13 @@ spack:
   - compilers: ['%gcc', '%intel']
   - packages:
       - global-workflow-env@hpc-stack-dev
-      - ufs-weather-model-env@hpc-stack-dev
+      - ufs-weather-model-env~debug@hpc-stack-dev
       - ufs-weather-model-env+debug@hpc-stack-dev
       - upp-env@hpc-stack-dev
       - ww3-env@hpc-stack-dev
       - gsi-env@hpc-stack-dev
       - ufs-utils-env@hpc-stack-dev
-      - nceplibs-env@hhpc-stack-dev
+      - nceplibs-env@hpc-stack-dev
       - soca-env@hpc-stack-dev
       - jedi-base-env
 
