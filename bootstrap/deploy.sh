@@ -3,8 +3,8 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # inputs
-stack_git="https://github.com/NOAA-EMC/spack-stack.git"
-stack_tag="develop"
+stack_git="https://github.com/kgerheiser/spack-stack.git"
+stack_tag="feature/hpc-dev-env"
 stack_dir="/Users/KIG/dev/spack-stack"
 template="hpc-stack-dev"
 env_name="hpc-stack-dev"
